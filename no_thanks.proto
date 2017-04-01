@@ -1,0 +1,26 @@
+// Recompile with:
+// python -m grpc_tools.protoc --proto_path='./' --python_out=. --grpc_python_out=. no_thanks.proto
+
+syntax = "proto3";
+
+package no_thanks;
+
+message RegisterRequest {
+  string name = 1;
+  string password = 2;
+}
+
+message RegisterResponse {
+  int64 client_id = 1;
+}
+
+service NoThanks {
+  rpc Register (RegisterRequest) returns (RegisterResponse) {}
+}
+
+// Entry in the user table
+message User {
+  string name = 1;
+  string password_hash = 2;
+  int64 client_id = 3;
+}
